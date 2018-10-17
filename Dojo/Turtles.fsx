@@ -108,7 +108,21 @@ System.IO.File.WriteAllText(path,squareAsSvg)
 
 // TODO
 // create a triangle... or whatever you want!
+let pointsForTriangle =
+    [(0.0,0.0,50.0,50.0)
+     (50.0,50.0,100.0,0.0)
+     (100.0,0.0,0.0,0.0)
+    ]
+let triangleAsSvg =
+    pointsForTriangle
+    // make a line for each point
+    |> List.map svgLine
+    // contatenate into one string
+    |> String.concat "\n"
+    // inject into the template
+    |> inTemplate
 
+System.IO.File.WriteAllText(path,triangleAsSvg)
 
 
 
@@ -255,7 +269,7 @@ let createSvg (startState:State) (program:INSTRUCTION list) =
 // createSvg from one of the sample programs,
 // and open the turtle.html file in your browser
 
-
+createSvg initialState complexProgram
 
 
 // TODO
